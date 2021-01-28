@@ -1,0 +1,5 @@
+﻿  OSsimulation.cpp
+D:\code\codeC++_vs\OSsimulation\OSsimulation\OSsimulation.cpp(118): warning C4838: 从“int”转换到“char”需要收缩转换
+D:\code\codeC++_vs\OSsimulation\OSsimulation\OSsimulation.cpp(118): warning C4309: “初始化”: 截断常量值
+D:\code\codeC++_vs\OSsimulation\OSsimulation\OSsimulation.cpp(179): warning C4715: “allocate”: 不是所有的控件路径都返回值
+  OSsimulation.vcxproj -> D:\code\codeC++_vs\OSsimulation\Debug\OSsimulation.exe

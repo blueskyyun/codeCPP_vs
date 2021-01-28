@@ -1,0 +1,91 @@
+//获取到图片信息后，利用此函数可以生成展示图片信息的html文件
+//
+//* @param Qstring类的对象的引用
+//* 创建html文件
+//
+void imageshow::createHtmlFile(QString& path2_i)
+{
+	string img_path = path2_i.toStdString();
+	string html_path = img_path;
+	int point_position = html_path.rfind(".");
+	html_path = html_path.substr(0, point_position);
+	html_path.append(".htm");
+
+	const int txt_contenti_c = 13;
+	const char* txt_contenti[txt_contenti_c] = {
+	"<!DOCTYPE HTML>" ,
+	"<html>" ,
+	"<head>" ,
+	"<meta charset=\"utf-8\">" ,
+	 "<title>Photo Analyzer@QHIIZhhh</title>" ,
+	 "</head>" ,
+	"<body>" ,
+	"<div id=\"container\" style=\"width:1255px\">",
+	"<div id=\"header\" style=\"background-color:#A3D1D1; \">" ,
+	"<h1 style=\"margin-bottom:0; \">Photo Analyzer</h1></div>" ,
+	 "<div id=\"menu\" style=\"background-color:#FFFFFF; height:700px; width:400px; float:left; \">" ,
+	"<br>",
+	"<img src=\" "
+	};
+
+	const int txt_contentii_c = 5;
+	const char* txt_contentii[txt_contentii_c] = {
+		"\" width=\"90% \"/>",
+		"</div>",
+		"<div id=\"content\" style=\"background-color:#FFFFFF; height:700px; width:800px; float:left; \">",
+		"<br>",
+		"Image Analysis Information<br>"
+
+	};
+	const int txt_contentiii_c = 5;
+	const char* txt_contentiii[txt_contentii_c] = {
+
+		"</div>",
+		"<div id=\"footer\" style=\"background-color:#C4E1E1; clear:both; text-align:center; \">copyright@QHIIZhhh</div > ",
+		" </div>",
+		"</body>",
+		"</html>"
+	};
+	ofstream fout;
+	fout.open(html_path, ios::out | ios::trunc);	//为输出(写)而打开文件,如果文件已存在则先删除该文件;
+	if (!fout.is_open()) {
+		cout << "error in open file!" << endl;	//弹出保存文件失败窗口
+
+	}
+	else {
+		for (int i = 0; i < txt_contenti_c; i++)
+		{
+			fout << txt_contenti[i];
+			if (i != txt_contenti_c - 1) {
+				fout << endl;
+			}
+		}
+		fout << flush;
+		fout << img_path;
+		for (int i = 0; i < txt_contentii_c; i++)
+		{
+			fout << txt_contentii[i];
+			if (i != txt_contentii_c - 1) {
+				fout << endl;
+			}
+		}
+		fout << flush;
+		for (int i = 0; i < 10; i++)
+		{
+			fout << "<br>" << tag_s[i] << "&emsp;&emsp;&emsp;" << tag_val[i] << "<br>";
+
+		}
+
+		fout << "<br>GPSLatitude&emsp;&emsp;" << direction[0] << "&emsp; &emsp;" << tag_val[10] << "<br>" << endl;
+		fout << "<br>GPSLongitude&emsp;&emsp;" << direction[1] << "&emsp; &emsp;" << tag_val[11] << "<br>" << endl;
+
+
+		for (int i = 0; i < txt_contentiii_c; i++)
+		{
+			fout << txt_contentiii[i] << endl;
+		}
+		fout << flush;
+	}
+	fout.close();
+
+}
